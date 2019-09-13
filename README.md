@@ -12,8 +12,8 @@ Docker image that runs the Dash dashd node in a container for easy deployment.
 Requirements
 ------------
 
-* Physical machine, cloud instance, or VPS that supports Docker (i.e. Vultr, Digital Ocean, KVM or XEN based VMs) running Ubuntu 16.04 or later (*not OpenVZ containers!*)
-* At least 20 GB to store the block chain files
+* Physical machine, cloud instance, or VPS that supports Docker (i.e. Vultr, Digital Ocean, KVM or XEN based VMs) running Ubuntu 18.04 or later (*not OpenVZ containers!*)
+* At least 40 GB to store the block chain files
 * At least 2 GB RAM + 2 GB swap file
 
 
