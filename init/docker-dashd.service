@@ -11,7 +11,7 @@ Restart=always
 # Modify IP6_PREFIX to match network config
 Environment="NAME=dashd"
 Environment="DATA_VOL=dashd-data"
-Environment="IMG=dashpay/dashd:dev"
+Environment="IMG=dashpay/dashd:latest"
 Environment="PORT=9999:9999/tcp"
 
 # To override environment variables, use local configuration directory:

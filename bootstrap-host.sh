@@ -34,6 +34,18 @@ if [ "$distro" = "trusty" -o "$distro" = "ubuntu:14.04" ]; then
     while ! apt-get install -y lxc-docker; do sleep 10; done
 fi
 
+if [ "$distro" = "bionic" -o "$distro" = "ubuntu:18.04" ]; then
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+    # Handle other parallel cloud init scripts that may lock the package database
+    # TODO: Add timeout
+    while ! apt-get update; do sleep 10; done
+
+    while ! apt-get install -y docker-ce; do sleep 10; done
+fi
+
+
 # Always clean-up, but fail successfully
 docker kill dashd-node 2>/dev/null || true
 docker rm dashd-node 2>/dev/null || true
@@ -48,9 +60,9 @@ fi
 docker volume create --name=dashd-data
 docker run -v dashd-data:/dash --rm $DASH_IMAGE dash_init
 
-# Start dashd via upstart and docker
-curl https://raw.githubusercontent.com/dashpay/docker-dashd/master/upstart.init > /etc/init/docker-dashd.conf
-start docker-dashd
+# Start dashd via systemd and docker
+curl https://raw.githubusercontent.com/dashpay/docker-dashd/master/init/docker-dashd.service > /lib/systemd/system/docker-dashd.service
+systemctl start docker-dashd
 
 set +ex
 echo "Resulting dash.conf:"
