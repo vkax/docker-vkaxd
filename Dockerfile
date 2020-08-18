@@ -1,5 +1,5 @@
 FROM phusion/baseimage:bionic-1.0.0
-MAINTAINER Holger Schinzel <holger@dash.org>
+LABEL maintainer="holger@dash.org,leon.white@dash.org"
 
 ARG USER_ID
 ARG GROUP_ID
