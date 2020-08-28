@@ -12,19 +12,17 @@ Docker image that runs the Dash dashd node in a container for easy deployment.
 Requirements
 ------------
 
-* Physical machine, cloud instance, or VPS that supports Docker (i.e. Vultr, Digital Ocean, KVM or XEN based VMs) running Ubuntu 14.04 or later (*not OpenVZ containers!*)
-* At least 4 GB to store the block chain files
-* At least 1 GB RAM + 2 GB swap file
-
-Recommended and tested on Vultr 1024 MB RAM/320 GB disk instance @ $8/mo.  Vultr also *accepts Bitcoin payments*!  May run on the 512 MB instance, but took *forever* (1+ week) to initialize due to swap and disk thrashing.
+* Physical machine, cloud instance, or VPS that supports Docker (i.e. Vultr, Digital Ocean, KVM or XEN based VMs) running Ubuntu 18.04 or later (*not OpenVZ containers!*)
+* At least 40 GB to store the block chain files
+* At least 2 GB RAM + 2 GB swap file
 
 
 Really Fast Quick Start
 -----------------------
 
-One liner for Ubuntu 14.04 LTS machines with JSON-RPC enabled on localhost and adds upstart init script:
+One liner for Ubuntu 18.04 LTS machines with JSON-RPC enabled on localhost and adds upstart init script:
 
-    curl https://raw.githubusercontent.com/dashpay/docker-dashd/master/bootstrap-host.sh | sh -s trusty
+    curl https://raw.githubusercontent.com/dashpay/docker-dashd/master/bootstrap-host.sh | sh -s bionic
 
 
 Quick Start
