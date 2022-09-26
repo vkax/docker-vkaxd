@@ -4,7 +4,7 @@
 #
 set -ex
 
-DASH_IMAGE=${DASH_IMAGE:-dashpay/dashd}
+VKAX_IMAGE=${VKAX_IMAGE:-vkaxproject/vkaxd}
 
 distro=$1
 shift
@@ -47,23 +47,23 @@ fi
 
 
 # Always clean-up, but fail successfully
-docker kill dashd-node 2>/dev/null || true
-docker rm dashd-node 2>/dev/null || true
-stop docker-dashd 2>/dev/null || true
+docker kill vkaxd-node 2>/dev/null || true
+docker rm vkaxd-node 2>/dev/null || true
+stop docker-vkaxd 2>/dev/null || true
 
 # Always pull remote images to avoid caching issues
-if [ -z "${DASH_IMAGE##*/*}" ]; then
-    docker pull $DASH_IMAGE
+if [ -z "${VKAX_IMAGE##*/*}" ]; then
+    docker pull $VKAX_IMAGE
 fi
 
 # Initialize the data container
-docker volume create --name=dashd-data
-docker run -v dashd-data:/dash --rm $DASH_IMAGE dash_init
+docker volume create --name=vkaxd-data
+docker run -v vkaxd-data:/vkax --rm $VKAX_IMAGE vkax_init
 
-# Start dashd via systemd and docker
-curl https://raw.githubusercontent.com/dashpay/docker-dashd/master/init/docker-dashd.service > /lib/systemd/system/docker-dashd.service
-systemctl start docker-dashd
+# Start vkaxd via systemd and docker
+curl https://raw.githubusercontent.com/vkaxproject/docker-vkaxd/master/init/docker-vkaxd.service > /lib/systemd/system/docker-vkaxd.service
+systemctl start docker-vkaxd
 
 set +ex
-echo "Resulting dash.conf:"
-docker run -v dashd-data:/dash --rm $DASH_IMAGE cat /dash/.dashcore/dash.conf
+echo "Resulting vkax.conf:"
+docker run -v vkaxd-data:/vkax --rm $VKAX_IMAGE cat /vkax/.vkaxcore/vkax.conf

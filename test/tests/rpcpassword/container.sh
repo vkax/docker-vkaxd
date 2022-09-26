@@ -2,14 +2,14 @@
 set -e
 
 # Generate the password the first time
-dash_init 2>/dev/null
-eval `grep rpcpassword $HOME/.dashcore/dash.conf`
+vkax_init 2>/dev/null
+eval `grep rpcpassword $HOME/.vkaxcore/vkax.conf`
 rpcpassword1=$rpcpassword
 
 # Generate the password again
-rm ~/.dashcore/dash.conf
-dash_init 2>/dev/null
-eval `grep rpcpassword $HOME/.dashcore/dash.conf`
+rm ~/.vkaxcore/vkax.conf
+vkax_init 2>/dev/null
+eval `grep rpcpassword $HOME/.vkaxcore/vkax.conf`
 rpcpassword2=$rpcpassword
 
 
