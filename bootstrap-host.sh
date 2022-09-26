@@ -61,7 +61,7 @@ docker volume create --name=vkaxd-data
 docker run -v vkaxd-data:/vkax --rm $VKAX_IMAGE vkax_init
 
 # Start vkaxd via systemd and docker
-curl https://raw.githubusercontent.com/vkaxproject/docker-vkaxd/master/init/docker-vkaxd.service > /lib/systemd/system/docker-vkaxd.service
+curl https://raw.githubusercontent.com/vkax/docker-vkaxd/master/init/docker-vkaxd.service > /lib/systemd/system/docker-vkaxd.service
 systemctl start docker-vkaxd
 
 set +ex
